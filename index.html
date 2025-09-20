@@ -6,30 +6,34 @@
 <title>Happy Birthday My Love ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 <style>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
   background: linear-gradient(135deg, #ffe4e1, #fff0f5);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 h1 {
   font-family: 'Pacifico', cursive;
   color: #ff6b81;
   text-align: center;
-  font-size: 2.2rem;
-  margin: 10px;
+  font-size: 2rem;
+  margin: 15px;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
 }
 
 .envelope {
-  width: 280px;
-  height: 180px;
+  width: 300px;
+  height: 200px;
   background: #ffe4e1;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -39,14 +43,14 @@ h1 {
   cursor: pointer;
   position: relative;
   transition: all 0.6s ease;
-  overflow: hidden;
   text-align: center;
   animation: float 3s ease-in-out infinite alternate;
+  overflow: hidden;
 }
 
 @keyframes float {
-  0% { transform: translateX(-20px); }
-  100% { transform: translateX(20px); }
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(10px); }
 }
 
 /* Envelope flap */
@@ -57,11 +61,11 @@ h1 {
   left: 0;
   width: 0;
   height: 0;
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
   border-top: 100px solid #ffb6c1;
-  transform-origin: top;
   transition: transform 0.6s ease;
+  transform-origin: top;
   z-index: 2;
 }
 
@@ -82,16 +86,16 @@ h1 {
 
 .envelope.opened .heart-seal {
   opacity: 0;
-  transform: translateX(-50%) scale(0);
+  transform: scale(0);
 }
 
 .envelope.opened {
   width: 95%;
-  max-width: 900px;
-  height: 75vh;
-  flex-direction: row;
+  max-width: 600px;
+  height: auto;
   cursor: default;
-  animation: none; /* Stop floating when opened */
+  animation: none;
+  padding: 0;
 }
 
 .hint-text {
@@ -103,11 +107,11 @@ h1 {
 
 .card-content {
   display: none;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  flex-direction: row;
   background: #fffaf0;
-  z-index: 1;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .envelope.opened .card-content {
@@ -120,46 +124,45 @@ h1 {
   to { opacity: 1; }
 }
 
-.card-left {
-  flex: 1;
-  background: #ffe4e1;
+/* Image section (polaroid style) */
+.image-section {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-}
-
-.card-left img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  object-fit: cover;
-}
-
-.card-right {
-  flex: 1;
   padding: 20px;
-  overflow-y: auto;
-  line-height: 1.6;
-  background: #fffaf0;
-  border-radius: 0 15px 15px 0;
 }
 
-.card-right h2 {
+.image-section img {
+  max-width: 90%;
+  border: 10px solid #fff;
+  border-bottom: 35px solid #fff; /* extra bottom for polaroid look */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background: white;
+}
+
+/* Message section */
+.message-section {
+  padding: 20px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.message-section h2 {
   font-family: 'Pacifico', cursive;
   color: #ff6b81;
-  text-align: center;
   margin-top: 0;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
-.card-right p {
+.message-section p {
   margin-bottom: 12px;
   font-size: 1rem;
   color: #333;
 }
 
+/* Confetti */
 .confetti {
   position: fixed;
   width: 100%;
@@ -167,7 +170,6 @@ h1 {
   pointer-events: none;
   top: 0;
   left: 0;
-  overflow: hidden;
   z-index: 9999;
 }
 
@@ -183,29 +185,6 @@ h1 {
   0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
   100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
-
-@media (max-width: 768px) {
-  .envelope.opened {
-    flex-direction: column;
-    height: 85vh;
-  }
-  .card-left, .card-right {
-    flex: none;
-    width: 100%;
-    height: 50%;
-    border-radius: 0;
-  }
-  .card-right {
-    border-radius: 0 0 15px 15px;
-    padding: 15px;
-  }
-  .card-right h2 {
-    font-size: 1.5rem;
-  }
-  .card-right p {
-    font-size: 0.9rem;
-  }
-}
 </style>
 </head>
 <body>
@@ -215,10 +194,10 @@ h1 {
 <div class="envelope" id="envelope" onclick="openCard(this)">
   <div class="heart-seal">❤️</div>
   <div class="card-content">
-    <div class="card-left">
+    <div class="image-section">
       <img src="images/malove 2.png" alt="Us together">
     </div>
-    <div class="card-right">
+    <div class="message-section">
       <h2>My Love,</h2>
       <p>Happy birthday, my love. May this year bring you as much happiness as you have brought into my life.</p>
       <p>I love you endlessly, now and forever. ❤️</p>
@@ -227,12 +206,9 @@ h1 {
   </div>
 </div>
 
-<div class="hint-text">🎁 Open me, pogi!</div>
+<div class="hint-text">🎁 Tap to open, pogi!</div>
 
 <div class="confetti" id="confetti"></div>
-
-<!-- Music -->
-<audio id="bg-music" src="images/happy-birthday-background-music-298561.mp3" preload="auto" loop></audio>
 
 <script>
 function openCard(envelope) {
@@ -240,17 +216,12 @@ function openCard(envelope) {
     envelope.classList.add('opened');
     document.querySelector('.hint-text').style.display = 'none';
     startConfetti();
-
-    // Play music
-    const music = document.getElementById('bg-music');
-    music.currentTime = 0;
-    music.play().catch(e => console.log("Music blocked:", e));
   }
 }
 
 function startConfetti() {
   const confettiContainer = document.getElementById('confetti');
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 80; i++) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti-piece';
     confetti.style.left = Math.random() * 100 + 'vw';
