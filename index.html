@@ -34,9 +34,9 @@ h1 {
 
 /* Envelope */
 .envelope {
-  width: 300px;
-  max-width: 400px;
-  height: 200px;
+  width: 350px;       /* bigger container */
+  max-width: 450px;
+  height: 220px;
   background: #ffe6f0; /* pastel pink */
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
@@ -55,10 +55,6 @@ h1 {
   0% { transform: translateY(-10px); }
   100% { transform: translateY(10px); }
 }
-@-webkit-keyframes float {
-  0% { transform: translateY(-10px); }
-  100% { transform: translateY(10px); }
-}
 
 /* Envelope flap */
 .envelope::before {
@@ -68,9 +64,9 @@ h1 {
   left: 0;
   width: 0;
   height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-top: 100px solid #f8bbd0; /* pastel flap */
+  border-left: 175px solid transparent; /* slightly bigger for new width */
+  border-right: 175px solid transparent;
+  border-top: 110px solid #f8bbd0; /* pastel flap */
   transition: transform 0.6s ease;
   transform-origin: top;
   z-index: 2;
@@ -79,7 +75,7 @@ h1 {
 /* Heart seal */
 .heart-seal {
   position: absolute;
-  top: 55px;
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.8rem;
@@ -98,8 +94,8 @@ h1 {
 }
 
 .envelope.opened {
-  width: 70%;
-  max-width: 600px;
+  width: 75%;         /* slightly bigger when opened */
+  max-width: 650px;   /* bigger max-width for desktop */
   height: auto;
   cursor: default;
   animation: none;
@@ -150,11 +146,11 @@ h1 {
 .image-section img {
   display: block;
   margin: 0 auto;
-  width: 90%;          /* slightly bigger on mobile */
-  max-width: 400px;    /* default max for mobile */
+  width: 90%;          /* mobile size */
+  max-width: 400px;
   height: auto;
   border: 5px solid #fff;          /* smaller border */
-  border-bottom: 20px solid #fff;  /* smaller polaroid bottom */
+  border-bottom: 20px solid #fff;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
   border-radius: 8px;
   background: white;
@@ -163,8 +159,8 @@ h1 {
 /* Desktop adjustments */
 @media (min-width: 768px) {
   .image-section img {
-    width: 70%;        /* scale nicely on desktop */
-    max-width: 550px;  /* bigger max width */
+    width: 70%;
+    max-width: 550px;
   }
 }
 
@@ -180,7 +176,7 @@ h1 {
 
 .message-section h2 {
   font-family: 'Pacifico', cursive;
-  color: #f48fb1; /* soft pink */
+  color: #f48fb1;
   margin-top: 0;
   font-size: clamp(1.5rem, 3vw, 2rem);
 }
@@ -188,7 +184,7 @@ h1 {
 .message-section p {
   margin-bottom: 12px;
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #6d4c41; /* soft brown */
+  color: #6d4c41;
 }
 
 /* Confetti */
@@ -255,12 +251,12 @@ envelope.addEventListener('touchstart', openCard);
 
 function startConfetti() {
   const confettiContainer = document.getElementById('confetti');
-  const count = window.innerWidth > 768 ? 80 : 40; // more on desktop
+  const count = window.innerWidth > 768 ? 80 : 40;
   for (let i = 0; i < count; i++) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti-piece';
     confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`; // soft pastel
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`;
     confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
     confettiContainer.appendChild(confetti);
   }
@@ -269,4 +265,3 @@ function startConfetti() {
 
 </body>
 </html>
-
