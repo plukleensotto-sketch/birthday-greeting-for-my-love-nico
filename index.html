@@ -128,21 +128,23 @@ h1 {
 .image-section {
   width: 100%;
   display: flex;
-  justify-content: center;  /* centers horizontally */
-  align-items: center;      /* centers vertically */
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
   padding: 20px;
 }
 
 .image-section img {
   display: block;
-  margin: 0 auto;           /* ensures center alignment */
-  max-width: 80%;           /* reduced slightly for balance */
+  margin: 0 auto;            /* centers image */
+  max-width: 80%;            /* scales with screen */
+  height: auto;              /* keeps proportions (no crop) */
   border: 10px solid #fff;
-  border-bottom: 35px solid #fff; /* polaroid look */
+  border-bottom: 35px solid #fff; /* polaroid bottom space */
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   border-radius: 5px;
   background: white;
 }
+
 /* Message section */
 .message-section {
   padding: 20px;
@@ -235,4 +237,5 @@ function startConfetti() {
 
 </body>
 </html>
+
 
