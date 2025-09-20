@@ -150,16 +150,23 @@ h1 {
 .image-section img {
   display: block;
   margin: 0 auto;
-  width: 95%;          /* slightly bigger than 80% */
-  max-width: 550px;    /* a bit larger max width for desktop */
+  width: 90%;          /* slightly bigger on mobile */
+  max-width: 400px;    /* default max for mobile */
   height: auto;
-  border: 10px solid #fff;
-  border-bottom: 35px solid #fff;
+  border: 5px solid #fff;          /* smaller border */
+  border-bottom: 20px solid #fff;  /* smaller polaroid bottom */
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
   border-radius: 8px;
   background: white;
 }
 
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .image-section img {
+    width: 70%;        /* scale nicely on desktop */
+    max-width: 550px;  /* bigger max width */
+  }
+}
 
 /* Message section */
 .message-section {
@@ -181,7 +188,7 @@ h1 {
 .message-section p {
   margin-bottom: 12px;
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #6d4c41; /* soft brown for text */
+  color: #6d4c41; /* soft brown */
 }
 
 /* Confetti */
@@ -217,7 +224,7 @@ h1 {
   <div class="heart-seal">❤️</div>
   <div class="card-content">
     <div class="image-section">
-      <img src="images/malove2.png" alt="Us together">
+      <img src="images/malove-2.png" alt="Us together">
     </div>
     <div class="message-section">
       <h2>🎂🎂🎂🎂🎂🎂🎂🎂</h2>
@@ -253,7 +260,7 @@ function startConfetti() {
     const confetti = document.createElement('div');
     confetti.className = 'confetti-piece';
     confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`; // soft pastel confetti
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`; // soft pastel
     confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
     confettiContainer.appendChild(confetti);
   }
@@ -262,7 +269,3 @@ function startConfetti() {
 
 </body>
 </html>
-
-
-
-
