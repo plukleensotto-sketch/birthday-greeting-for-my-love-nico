@@ -236,16 +236,21 @@ h1 {
     border-radius: 0;
   }
   .card-right {
-    border-radius: 0 0 15px 15px;
-    padding: 15px;
+     flex: 1;
+  padding: 20px;
+  overflow-y: auto;   /* allow scrolling if text is long */
+  word-wrap: break-word; /* prevent cutting off words */
+  font-size: 1rem;
   }
   .card-right h2 {
-    font-size: 1.4rem;
+    font-size: 1.5rem; /* smaller on phone */
   }
   .card-right p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
+
+
 </style>
 </head>
 <body>
@@ -307,5 +312,6 @@ function startConfetti() {
 
 </body>
 </html>
+
 
 
