@@ -15,6 +15,7 @@ body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  flex-direction: column;
 }
 
 h1 {
@@ -40,6 +41,48 @@ h1 {
   transition: all 0.6s ease;
   overflow: hidden;
   text-align: center;
+  animation: float 3s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateX(-30px); }
+  100% { transform: translateX(30px); }
+}
+
+/* Envelope flap */
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 110px solid #ffb6c1;
+  transform-origin: top;
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+/* Heart seal */
+.heart-seal {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  z-index: 3;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.envelope.opened::before {
+  transform: rotateX(180deg);
+}
+
+.envelope.opened .heart-seal {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
 }
 
 .envelope.opened {
@@ -48,10 +91,14 @@ h1 {
   height: 70vh;
   flex-direction: row;
   cursor: default;
+  animation: none; /* Stop floating when opened */
 }
 
-.envelope span {
-  font-size: 1.1rem;
+.hint-text {
+  font-size: 0.9rem;
+  margin-top: 15px; /* space under envelope */
+  color: #444;
+  text-align: center;
 }
 
 .card-content {
@@ -59,10 +106,18 @@ h1 {
   width: 100%;
   height: 100%;
   flex-direction: row;
+  background: #fffaf0;
+  z-index: 1;
 }
 
 .envelope.opened .card-content {
   display: flex;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .card-left {
@@ -86,7 +141,7 @@ h1 {
 .card-right {
   flex: 1;
   padding: 30px;
-  overflow: hidden; /* removes scrollbars */
+  overflow: hidden;
   line-height: 1.6;
   background: #fffaf0;
   border-radius: 0 15px 15px 0;
@@ -121,7 +176,6 @@ h1 {
   position: absolute;
   width: 12px;
   height: 12px;
-  background-color: #ff6b81;
   border-radius: 50%;
   animation: fall 3s linear infinite;
 }
@@ -154,11 +208,10 @@ h1 {
 <h1>Happy Birthday, My Love! 💖</h1>
 
 <div class="envelope" id="envelope" onclick="openCard(this)">
-  <span>🎁 Tap this if you think your pogi</span>
+  <div class="heart-seal">❤️</div>
   <div class="card-content">
     <div class="card-left">
       <img src="images/malove 2.png" alt="Us together">
-
     </div>
     <div class="card-right">
       <h2>My Love,</h2>
@@ -168,6 +221,8 @@ h1 {
   </div>
 </div>
 
+<!-- Hint text outside envelope -->
+<div class="hint-text">🌸 Open this, perbert!</div>
 
 <div class="confetti" id="confetti"></div>
 
@@ -175,7 +230,7 @@ h1 {
 function openCard(envelope) {
   if (!envelope.classList.contains('opened')) {
     envelope.classList.add('opened');
-    envelope.querySelector('span').style.display = 'none';
+    document.querySelector('.hint-text').style.display = 'none';
     startConfetti();
   }
 }
@@ -195,7 +250,3 @@ function startConfetti() {
 
 </body>
 </html>
-
-
-
-
