@@ -22,14 +22,14 @@ h1 {
   font-family: 'Pacifico', cursive;
   color: #ff6b81;
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 2.2rem;
+  margin: 10px;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
 }
 
 .envelope {
-  width: 300px;
-  height: 200px;
+  width: 280px;
+  height: 180px;
   background: #ffe4e1;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -45,8 +45,8 @@ h1 {
 }
 
 @keyframes float {
-  0% { transform: translateX(-30px); }
-  100% { transform: translateX(30px); }
+  0% { transform: translateX(-20px); }
+  100% { transform: translateX(20px); }
 }
 
 /* Envelope flap */
@@ -57,9 +57,9 @@ h1 {
   left: 0;
   width: 0;
   height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-top: 110px solid #ffb6c1;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 100px solid #ffb6c1;
   transform-origin: top;
   transition: transform 0.6s ease;
   z-index: 2;
@@ -68,10 +68,10 @@ h1 {
 /* Heart seal */
 .heart-seal {
   position: absolute;
-  top: 60px;
+  top: 55px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem;
+  font-size: 1.8rem;
   z-index: 3;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -86,9 +86,9 @@ h1 {
 }
 
 .envelope.opened {
-  width: 90%;
+  width: 95%;
   max-width: 900px;
-  height: 70vh;
+  height: 75vh;
   flex-direction: row;
   cursor: default;
   animation: none; /* Stop floating when opened */
@@ -96,7 +96,7 @@ h1 {
 
 .hint-text {
   font-size: 0.9rem;
-  margin-top: 15px; /* space under envelope */
+  margin-top: 15px;
   color: #444;
   text-align: center;
 }
@@ -126,8 +126,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  transition: all 0.5s;
+  padding: 10px;
 }
 
 .card-left img {
@@ -140,8 +139,8 @@ h1 {
 
 .card-right {
   flex: 1;
-  padding: 30px;
-  overflow: hidden;
+  padding: 20px;
+  overflow-y: auto;
   line-height: 1.6;
   background: #fffaf0;
   border-radius: 0 15px 15px 0;
@@ -152,11 +151,11 @@ h1 {
   color: #ff6b81;
   text-align: center;
   margin-top: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .card-right p {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   font-size: 1rem;
   color: #333;
 }
@@ -174,8 +173,8 @@ h1 {
 
 .confetti-piece {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   animation: fall 3s linear infinite;
 }
@@ -188,7 +187,7 @@ h1 {
 @media (max-width: 768px) {
   .envelope.opened {
     flex-direction: column;
-    height: 80vh;
+    height: 85vh;
   }
   .card-left, .card-right {
     flex: none;
@@ -198,7 +197,13 @@ h1 {
   }
   .card-right {
     border-radius: 0 0 15px 15px;
-    padding: 20px;
+    padding: 15px;
+  }
+  .card-right h2 {
+    font-size: 1.5rem;
+  }
+  .card-right p {
+    font-size: 0.9rem;
   }
 }
 </style>
@@ -211,20 +216,23 @@ h1 {
   <div class="heart-seal">❤️</div>
   <div class="card-content">
     <div class="card-left">
-      <img src="images/malove 2.png" alt="Us together">
+      <img src="images/malove2.png" alt="Us together">
     </div>
     <div class="card-right">
       <h2>My Love,</h2>
-      <p>Happy birthday, my love. May this year bring you as much happiness as you have brought into my life. I love you endlessly, now and forever.</p>
-      <p>❤️ Leen</p>
+      <p>Happy birthday, my love. May this year bring you as much happiness as you have brought into my life.</p>
+      <p>I love you endlessly, now and forever. ❤️</p>
+      <p>— Leen</p>
     </div>
   </div>
 </div>
 
-<!-- Hint text outside envelope -->
 <div class="hint-text">🎁 Open me, pogi!</div>
 
 <div class="confetti" id="confetti"></div>
+
+<!-- Music -->
+<audio id="bg-music" src="images/happy-birthday-background-music-298561.mp3" preload="auto" loop></audio>
 
 <script>
 function openCard(envelope) {
@@ -232,6 +240,11 @@ function openCard(envelope) {
     envelope.classList.add('opened');
     document.querySelector('.hint-text').style.display = 'none';
     startConfetti();
+
+    // Play music
+    const music = document.getElementById('bg-music');
+    music.currentTime = 0;
+    music.play().catch(e => console.log("Music blocked:", e));
   }
 }
 
@@ -250,4 +263,3 @@ function startConfetti() {
 
 </body>
 </html>
-
