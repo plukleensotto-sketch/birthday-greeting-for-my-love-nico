@@ -52,6 +52,10 @@ h1 {
   0% { transform: translateY(-10px); }
   100% { transform: translateY(10px); }
 }
+@-webkit-keyframes float {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(10px); }
+}
 
 /* Envelope flap */
 .envelope::before {
@@ -82,6 +86,7 @@ h1 {
 
 .envelope.opened::before {
   transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
 }
 
 .envelope.opened .heart-seal {
@@ -128,19 +133,22 @@ h1 {
 .image-section {
   width: 100%;
   display: flex;
-  justify-content: center;   /* center horizontally */
-  align-items: center;       /* center vertically */
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   margin-top: 20px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image-section img {
   display: block;
-  margin: 0 auto;            /* centers image */
-  max-width: 80%;            /* scales with screen */
-  height: auto;              /* keeps proportions (no crop) */
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
   border: 10px solid #fff;
-  border-bottom: 35px solid #fff; /* polaroid bottom space */
+  border-bottom: 35px solid #fff;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   border-radius: 5px;
   background: white;
@@ -151,6 +159,9 @@ h1 {
   padding: 20px;
   line-height: 1.6;
   text-align: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .message-section h2 {
@@ -195,17 +206,16 @@ h1 {
 
 <h1>Happy Birthday, My Love! </h1>
 
-<div class="envelope" id="envelope" onclick="openCard(this)">
+<div class="envelope" id="envelope">
   <div class="heart-seal">❤️</div>
   <div class="card-content">
     <div class="image-section">
-      <img src="images/malove 2.png" alt="Us together">
+      <img src="images/malove-2.png" alt="Us together">
     </div>
     <div class="message-section">
-     <h2>🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂</h2>
+      <h2>🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂</h2>
       <p>Happy birthday, my love. May this year bring you as much happiness as you have brought into my life.</p>
-      <p>Here’s to more adventures, more smiles, and more “us” moments. I love you endlessly, and I can’t wait to celebrate many more birthdays with you ❤️ -Leen </p> 
-
+      <p>Here’s to more adventures, more smiles, and more “us” moments. I love you endlessly, and I can’t wait to celebrate many more birthdays with you ❤️ -Leen </p>
     </div>
   </div>
 </div>
@@ -215,7 +225,9 @@ h1 {
 <div class="confetti" id="confetti"></div>
 
 <script>
-function openCard(envelope) {
+const envelope = document.getElementById('envelope');
+
+function openCard() {
   if (!envelope.classList.contains('opened')) {
     envelope.classList.add('opened');
     document.querySelector('.hint-text').style.display = 'none';
@@ -223,9 +235,14 @@ function openCard(envelope) {
   }
 }
 
+// Click support
+envelope.addEventListener('click', openCard);
+// Touch support for Android/iOS
+envelope.addEventListener('touchstart', openCard);
+
 function startConfetti() {
   const confettiContainer = document.getElementById('confetti');
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 40; i++) {  // Reduced for mobile performance
     const confetti = document.createElement('div');
     confetti.className = 'confetti-piece';
     confetti.style.left = Math.random() * 100 + 'vw';
@@ -238,13 +255,3 @@ function startConfetti() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
