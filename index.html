@@ -80,6 +80,7 @@ h1 {
   max-height: 100%;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  object-fit: cover;
 }
 
 .card-right {
@@ -156,9 +157,8 @@ h1 {
   <span>🎁 Tap this if you think your pogi</span>
   <div class="card-content">
     <div class="card-left">
-      <img src="images/malove 2.png" alt="Us together" border="0">
-
-
+      <!-- Make sure this file exists: /images/malove 2.png -->
+      <img src="images/malove 2.png" alt="Us together">
     </div>
     <div class="card-right">
       <h2>My Love,</h2>
@@ -181,7 +181,7 @@ function openCard(envelope) {
 
 function startConfetti() {
   const confettiContainer = document.getElementById('confetti');
-  for(let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i++) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti-piece';
     confetti.style.left = Math.random() * 100 + 'vw';
@@ -194,10 +194,3 @@ function startConfetti() {
 
 </body>
 </html>
-
-
-
-
-
-
-
