@@ -128,20 +128,21 @@ h1 {
 .image-section {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  /* centers horizontally */
+  align-items: center;      /* centers vertically */
   padding: 20px;
 }
 
 .image-section img {
-  max-width: 90%;
+  display: block;
+  margin: 0 auto;           /* ensures center alignment */
+  max-width: 80%;           /* reduced slightly for balance */
   border: 10px solid #fff;
-  border-bottom: 35px solid #fff; /* extra bottom for polaroid look */
+  border-bottom: 35px solid #fff; /* polaroid look */
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   border-radius: 5px;
   background: white;
 }
-
 /* Message section */
 .message-section {
   padding: 20px;
@@ -200,8 +201,8 @@ h1 {
     <div class="message-section">
       <h2>My Love,</h2>
       <p>Happy birthday, my love. May this year bring you as much happiness as you have brought into my life.</p>
-      <p>I love you endlessly, now and forever. ❤️</p>
-      <p>— Leen</p>
+      <p>I love you endlessly, now and forever.</p>
+      <p>❤️Leen❤️</p>
     </div>
   </div>
 </div>
@@ -234,3 +235,4 @@ function startConfetti() {
 
 </body>
 </html>
+
