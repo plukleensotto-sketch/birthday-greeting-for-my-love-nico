@@ -14,7 +14,7 @@ html, body {
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+  background: linear-gradient(135deg, #fdf1f4, #fffaf0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,21 +22,24 @@ body {
   overflow-x: hidden;
 }
 
+/* Headings */
 h1 {
   font-family: 'Pacifico', cursive;
-  color: #ff6b81;
+  color: #f48fb1; /* soft pink */
   text-align: center;
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
   margin: 15px;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.08);
 }
 
+/* Envelope */
 .envelope {
   width: 300px;
+  max-width: 400px;
   height: 200px;
-  background: #ffe4e1;
+  background: #ffe6f0; /* pastel pink */
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +70,7 @@ h1 {
   height: 0;
   border-left: 150px solid transparent;
   border-right: 150px solid transparent;
-  border-top: 100px solid #ffb6c1;
+  border-top: 100px solid #f8bbd0; /* pastel flap */
   transition: transform 0.6s ease;
   transform-origin: top;
   z-index: 2;
@@ -95,7 +98,7 @@ h1 {
 }
 
 .envelope.opened {
-  width: 95%;
+  width: 70%;
   max-width: 600px;
   height: auto;
   cursor: default;
@@ -103,18 +106,20 @@ h1 {
   padding: 0;
 }
 
+/* Hint text */
 .hint-text {
   font-size: 0.9rem;
   margin-top: 15px;
-  color: #444;
+  color: #a1887f; /* soft brown */
   text-align: center;
 }
 
+/* Card content */
 .card-content {
   display: none;
   flex-direction: column;
   width: 100%;
-  background: #fffaf0;
+  background: #fff7f0; /* soft cream */
   border-radius: 15px;
   overflow: hidden;
 }
@@ -129,7 +134,7 @@ h1 {
   to { opacity: 1; }
 }
 
-/* Image section (polaroid style) */
+/* Image section */
 .image-section {
   width: 100%;
   display: flex;
@@ -145,12 +150,13 @@ h1 {
 .image-section img {
   display: block;
   margin: 0 auto;
-  max-width: 100%;
+  width: 80%;
+  max-width: 500px;
   height: auto;
   border: 10px solid #fff;
   border-bottom: 35px solid #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-radius: 5px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  border-radius: 8px;
   background: white;
 }
 
@@ -166,15 +172,15 @@ h1 {
 
 .message-section h2 {
   font-family: 'Pacifico', cursive;
-  color: #ff6b81;
+  color: #f48fb1; /* soft pink */
   margin-top: 0;
-  font-size: 1.6rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 .message-section p {
   margin-bottom: 12px;
-  font-size: 1rem;
-  color: #333;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #6d4c41; /* soft brown for text */
 }
 
 /* Confetti */
@@ -210,7 +216,7 @@ h1 {
   <div class="heart-seal">❤️</div>
   <div class="card-content">
     <div class="image-section">
-      <img src="images/malove2.png" alt="Us together">
+      <img src="images/malove-2.png" alt="Us together">
     </div>
     <div class="message-section">
       <h2>🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂</h2>
@@ -235,18 +241,18 @@ function openCard() {
   }
 }
 
-// Click support
+// Click & touch support
 envelope.addEventListener('click', openCard);
-// Touch support for Android/iOS
 envelope.addEventListener('touchstart', openCard);
 
 function startConfetti() {
   const confettiContainer = document.getElementById('confetti');
-  for (let i = 0; i < 40; i++) {  // Reduced for mobile performance
+  const count = window.innerWidth > 768 ? 80 : 40; // more on desktop
+  for (let i = 0; i < count; i++) {
     const confetti = document.createElement('div');
     confetti.className = 'confetti-piece';
     confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`; // soft pastel confetti
     confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
     confettiContainer.appendChild(confetti);
   }
@@ -255,4 +261,3 @@ function startConfetti() {
 
 </body>
 </html>
-
