@@ -209,6 +209,19 @@ h1 {
   0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
   100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
+
+/* Fallback play button */
+#playSongBtn {
+  display: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 1rem;
+  background: #f48fb1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -235,9 +248,12 @@ h1 {
 
 <!-- Audio -->
 <audio id="birthdaySong" src="images/happy-birthday-background-music-298561.mp3" preload="auto" loop></audio>
+<button id="playSongBtn">Play Song 🎵</button>
 
 <script>
 const envelope = document.getElementById('envelope');
+const song = document.getElementById('birthdaySong');
+const playBtn = document.getElementById('playSongBtn');
 
 function openCard() {
   if (!envelope.classList.contains('opened')) {
@@ -245,18 +261,24 @@ function openCard() {
     document.querySelector('.hint-text').style.display = 'none';
     startConfetti();
 
-    // Play favorite song
-    const song = document.getElementById('birthdaySong');
+    // Attempt to play song
     song.volume = 0.7;
     song.play().catch(() => {
-      console.log('Autoplay blocked by browser, user interaction required.');
+      // Show fallback button if autoplay is blocked
+      playBtn.style.display = 'block';
     });
   }
 }
 
 // Click & touch support
 envelope.addEventListener('click', openCard);
-envelope.addEventListener('touchstart', openCard);
+envelope.addEventListener('touchend', openCard);
+
+// Fallback play button
+playBtn.addEventListener('click', () => {
+  song.play();
+  playBtn.style.display = 'none';
+});
 
 function startConfetti() {
   const confettiContainer = document.getElementById('confetti');
@@ -277,4 +299,3 @@ function startConfetti() {
 
 </body>
 </html>
-
